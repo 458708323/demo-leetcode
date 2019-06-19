@@ -1,6 +1,8 @@
 package com.example.demoleetcode.leetcode;
 
-import java.util.Scanner;
+import com.alibaba.fastjson.JSON;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Description:
@@ -16,13 +18,30 @@ import java.util.Scanner;
 public class Solution {
 
     public void reverseString(char[] s) {
+        s = getSortChar(s, 0, s.length - 1);
+        List<String> a = new ArrayList<>();
+        for (char ss : s) {
+            a.add(String.valueOf(ss));
+        }
+        System.out.println(a.toString());
+    }
 
+    public char[] getSortChar(char[] s, int a, int b) {
+        if (a >= b) {
+            return s;
+        } else {
+            char ss = s[a];
+            s[a] = s[b];
+            s[b] = ss;
+            getSortChar(s, a + 1, b - 1);
+        }
+        return s;
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String a = scanner.next();
-        char[] s = a.toCharArray();
-
+        Solution solution = new Solution();
+        char[] s = "hello".toCharArray();
+        solution.reverseString(s);
     }
+
 }
